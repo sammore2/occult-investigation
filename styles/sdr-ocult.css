@@ -1,0 +1,543 @@
+/* SDR OCULT — "dossiê de campo": dark case-file dossier, violet accent.
+   Scoped under .sdr-ocult-sheet. No global selectors; no base
+   input/select/textarea styling (Loom owns that) — only layout widths. */
+
+.sdr-ocult-sheet {
+  --ocult-bg: #15171c;
+  --ocult-surface: #1e222a;
+  --ocult-surface-2: #232936;
+  --ocult-line: #2f3540;
+  --ocult-ink: #e4e1d8;
+  --ocult-dim: #8e8a80;
+  --ocult-accent: #9b7fd4;
+  --ocult-teal: #4fb3a5;
+  --ocult-danger: #c9744a;
+  --ocult-tag-1: #7d8aa0;
+  --ocult-tag-2: #6fa39a;
+  --ocult-tag-3: #a08bc0;
+  --ocult-tag-4: #b0a07a;
+  --ocult-tag-5: #8a9a6a;
+}
+
+.sdr-ocult-sheet .sdr-ocult-root {
+  background: var(--ocult-bg);
+  color: var(--ocult-ink);
+  font-family: var(--font-body);
+  padding: 12px 14px 0 14px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* File tag header: violet spine bar + small caps stamp */
+.sdr-ocult-sheet .sdr-ocult-file-tag {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+  background: var(--ocult-surface);
+  border: 1px solid var(--ocult-line);
+  border-left: 4px solid var(--ocult-accent);
+  padding: 8px 10px;
+}
+
+.sdr-ocult-sheet .sdr-ocult-file-tag-npc { align-items: center; }
+
+.sdr-ocult-sheet .sdr-ocult-file-stamp {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ocult-accent);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  align-self: center;
+  white-space: nowrap;
+}
+
+.sdr-ocult-sheet .sdr-ocult-file-main { flex: 1; min-width: 0; }
+
+.sdr-ocult-sheet .sdr-ocult-name { width: 100%; font-family: var(--font-display); font-size: 18px; }
+
+.sdr-ocult-sheet .sdr-ocult-slots { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 4px; }
+.sdr-ocult-sheet .sdr-ocult-slot { display: flex; gap: 4px; align-items: baseline; }
+.sdr-ocult-sheet .sdr-ocult-slot-label {
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ocult-dim);
+}
+.sdr-ocult-sheet .sdr-ocult-slot-link { color: var(--ocult-teal); text-decoration: underline; padding: 0; }
+.sdr-ocult-sheet .sdr-ocult-slot-empty { color: var(--ocult-dim); }
+
+.sdr-ocult-sheet .sdr-ocult-nex { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; }
+.sdr-ocult-sheet .sdr-ocult-nex-label {
+  font-family: var(--font-display); font-size: 10px; letter-spacing: 2px; color: var(--ocult-dim);
+}
+.sdr-ocult-sheet .sdr-ocult-nex-field { display: flex; align-items: baseline; gap: 2px; font-family: var(--font-display); }
+.sdr-ocult-sheet .sdr-ocult-nex-field input { width: 64px; text-align: right; font-size: 24px; }
+.sdr-ocult-sheet .sdr-ocult-nex-pct { font-size: 18px; color: var(--ocult-dim); }
+
+/* Attribute row: five equal boxes in a row */
+.sdr-ocult-sheet .sdr-ocult-attrs { display: flex; gap: 8px; }
+.sdr-ocult-sheet .sdr-ocult-attr {
+  flex: 1; background: var(--ocult-surface); border: 1px solid var(--ocult-line);
+  display: flex; flex-direction: column; align-items: center; padding: 6px 4px;
+}
+.sdr-ocult-sheet .sdr-ocult-attr-num { width: 100%; text-align: center; font-family: var(--font-display); font-size: 22px; }
+.sdr-ocult-sheet .sdr-ocult-attr-key {
+  font-family: var(--font-display); font-size: 12px; letter-spacing: 2px;
+  color: var(--ocult-accent); padding: 2px 6px;
+}
+
+/* Meters */
+.sdr-ocult-sheet .sdr-ocult-meters { display: flex; gap: 8px; }
+.sdr-ocult-sheet .sdr-ocult-meters-npc { flex-direction: column; }
+.sdr-ocult-sheet .sdr-ocult-meter { flex: 1; background: var(--ocult-surface); border: 1px solid var(--ocult-line); padding: 6px 8px; }
+.sdr-ocult-sheet .sdr-ocult-meter-head { display: flex; align-items: center; gap: 6px; }
+.sdr-ocult-sheet .sdr-ocult-meter-label {
+  font-family: var(--font-display); font-size: 11px; letter-spacing: 2px; color: var(--ocult-dim);
+}
+.sdr-ocult-sheet .sdr-ocult-meter-nums { display: flex; align-items: center; gap: 2px; margin-left: auto; font-family: var(--font-display); }
+.sdr-ocult-sheet .sdr-ocult-meter-nums input { width: 44px; text-align: right; }
+.sdr-ocult-sheet .sdr-ocult-stepper { display: flex; gap: 2px; }
+.sdr-ocult-sheet .sdr-ocult-stepper button { padding: 0 6px; }
+.sdr-ocult-sheet .sdr-ocult-bar { height: 5px; background: var(--ocult-line); margin-top: 5px; }
+.sdr-ocult-sheet .sdr-ocult-bar-fill { height: 100%; }
+.sdr-ocult-sheet .sdr-ocult-bar-pv { background: var(--ocult-teal); }
+.sdr-ocult-sheet .sdr-ocult-bar-pe { background: var(--ocult-accent); }
+.sdr-ocult-sheet .sdr-ocult-bar-san { background: var(--ocult-tag-4); }
+.sdr-ocult-sheet .sdr-ocult-bar-det { background: var(--ocult-teal); }
+
+/* Defense strip */
+.sdr-ocult-sheet .sdr-ocult-defense-row {
+  display: flex; gap: 14px; align-items: center; flex-wrap: wrap;
+  background: var(--ocult-surface); border: 1px solid var(--ocult-line); padding: 6px 10px;
+  font-family: var(--font-display);
+}
+.sdr-ocult-sheet .sdr-ocult-def-total strong { font-size: 18px; }
+.sdr-ocult-sheet .sdr-ocult-def-field { display: flex; gap: 4px; align-items: center; font-size: 11px; color: var(--ocult-dim); }
+.sdr-ocult-sheet .sdr-ocult-def-field input { width: 48px; text-align: right; }
+
+/* Tabs */
+.sdr-ocult-sheet .sdr-ocult-tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+.sdr-ocult-sheet .sdr-ocult-tab-btn {
+  font-family: var(--font-display); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 6px 10px; color: var(--ocult-dim); border: 1px solid var(--ocult-line); background: var(--ocult-surface);
+}
+.sdr-ocult-sheet .sdr-ocult-tab-btn.active { color: var(--ocult-ink); border-bottom: 2px solid var(--ocult-accent); }
+.sdr-ocult-sheet .sdr-ocult-tab-body { flex: 1; }
+
+/* Section titles: small caps, spaced */
+.sdr-ocult-sheet .sdr-ocult-section-title {
+  font-family: var(--font-display); font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ocult-dim); border-bottom: 1px solid var(--ocult-line);
+  padding: 4px 0; margin: 8px 0 6px 0; display: flex; justify-content: space-between; align-items: center;
+}
+
+/* Skills table */
+.sdr-ocult-sheet .sdr-ocult-skills { width: 100%; border-collapse: collapse; }
+.sdr-ocult-sheet .sdr-ocult-skill td { padding: 2px 4px; border-bottom: 1px solid var(--ocult-line); }
+.sdr-ocult-sheet .sdr-ocult-skill-name { width: 55%; }
+.sdr-ocult-sheet .sdr-ocult-skill-attr { max-width: 64px; }
+.sdr-ocult-sheet .sdr-ocult-skill-grade { width: 30%; }
+.sdr-ocult-sheet .sdr-ocult-skill-grade select { width: 100%; }
+.sdr-ocult-sheet .sdr-ocult-skill-total { text-align: right; width: 15%; }
+.sdr-ocult-sheet .sdr-ocult-skill-total button { font-family: var(--font-display); color: var(--ocult-teal); }
+.sdr-ocult-sheet .sdr-ocult-init-row { margin-top: 8px; }
+
+/* Cards: weapons, protections, rituals, powers, gear */
+.sdr-ocult-sheet .sdr-ocult-weapon,
+.sdr-ocult-sheet .sdr-ocult-prot,
+.sdr-ocult-sheet .sdr-ocult-ritual,
+.sdr-ocult-sheet .sdr-ocult-power,
+.sdr-ocult-sheet .sdr-ocult-gear {
+  display: flex; gap: 8px; align-items: center;
+  background: var(--ocult-surface); border: 1px solid var(--ocult-line);
+  border-left: 3px solid var(--ocult-teal); padding: 5px 8px; margin-bottom: 4px;
+}
+.sdr-ocult-sheet .sdr-ocult-ritual { border-left-color: var(--ocult-accent); }
+.sdr-ocult-sheet .sdr-ocult-weapon-name { flex: 1; text-align: left; font-family: var(--font-display); padding: 0; }
+.sdr-ocult-sheet .sdr-ocult-weapon-skill,
+.sdr-ocult-sheet .sdr-ocult-weapon-crit,
+.sdr-ocult-sheet .sdr-ocult-prot-bonus,
+.sdr-ocult-sheet .sdr-ocult-cost,
+.sdr-ocult-sheet .sdr-ocult-req,
+.sdr-ocult-sheet .sdr-ocult-qty { font-size: 12px; color: var(--ocult-dim); }
+.sdr-ocult-sheet .sdr-ocult-req { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sdr-ocult-sheet .sdr-ocult-circle-group { margin-bottom: 6px; }
+.sdr-ocult-sheet .sdr-ocult-circle-label { font-family: var(--font-display); font-size: 11px; letter-spacing: 1.5px; color: var(--ocult-accent); margin: 4px 0; }
+.sdr-ocult-sheet .sdr-ocult-gear-cat { font-family: var(--font-display); font-size: 11px; letter-spacing: 1.5px; color: var(--ocult-teal); margin: 6px 0 4px 0; }
+
+/* Neutral element tags (own palette, not the game's) */
+.sdr-ocult-sheet .sdr-ocult-elem-tag {
+  font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+  background: var(--ocult-surface-2); border: 1px solid var(--ocult-line);
+  color: var(--ocult-ink); padding: 1px 6px; white-space: nowrap;
+}
+.sdr-ocult-sheet .sdr-ocult-item-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+
+/* NPC skill chips */
+.sdr-ocult-sheet .sdr-ocult-npc-skills { display: flex; gap: 4px; flex-wrap: wrap; }
+.sdr-ocult-sheet .sdr-ocult-npc-skill {
+  border: 1px solid var(--ocult-line); background: var(--ocult-surface);
+  padding: 3px 8px; font-size: 12px;
+}
+
+/* Item sheet: two-column fields */
+.sdr-ocult-sheet .sdr-ocult-item-head { display: flex; gap: 8px; align-items: center; background: var(--ocult-surface); border: 1px solid var(--ocult-line); border-left: 4px solid var(--ocult-accent); padding: 8px 10px; }
+.sdr-ocult-sheet .sdr-ocult-item-type { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--ocult-dim); white-space: nowrap; }
+.sdr-ocult-sheet .sdr-ocult-item-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 10px; }
+.sdr-ocult-sheet .sdr-ocult-field { display: flex; flex-direction: column; gap: 2px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--ocult-dim); }
+.sdr-ocult-sheet .sdr-ocult-field input,
+.sdr-ocult-sheet .sdr-ocult-field select { width: 100%; }
+.sdr-ocult-sheet .sdr-ocult-span { grid-column: 1 / -1; }
+
+.sdr-ocult-sheet .sdr-ocult-notes { width: 100%; }
+
+/* Fixed license footer */
+.sdr-ocult-sheet .sdr-ocult-legal {
+  position: sticky; bottom: 0; margin: 8px -14px 0 -14px; padding: 6px 14px;
+  background: var(--ocult-surface); border-top: 1px solid var(--ocult-line);
+  font-size: 11px; font-style: italic; color: var(--ocult-dim); text-align: center;
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Character sheet v2 — "agent case file": ink-dark folder, typewritten
+   labels, taped polaroid, NEX as an ink stamp. Scoped to .ocult-ui.
+   Deliberately avoids red + black, sigils and radial attribute layouts
+   (the reference game's visual identity, forbidden by its license).
+   ══════════════════════════════════════════════════════════════════════ */
+@font-face {
+  font-family: 'SDR Ocult Typewriter';
+  src: url('/marketplace/rulesets/sdr-ocult/assets/fonts/special-elite-400.woff2') format('woff2');
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+
+.ocult-ui {
+  --oc-bg: #14161b;
+  --oc-folder: #1b1e25;
+  --oc-card: #20242c;
+  --oc-line: #323845;
+  --oc-paper: #e8e4da;
+  --oc-text: #dcd8cd;
+  --oc-dim: #8d897f;
+  --oc-violet: #a48ade;
+  --oc-violet-dim: rgba(164, 138, 222, 0.14);
+  --oc-teal: #4fb3a5;
+  --oc-rust: #c9744a;
+  --oc-type: 'SDR Ocult Typewriter', 'Courier New', monospace;
+}
+.loom-window.ocult-ui {
+  padding: 0; overflow: hidden; color: var(--oc-text);
+  background:
+    radial-gradient(120% 70% at 100% 0%, rgba(164, 138, 222, 0.07) 0%, transparent 55%),
+    var(--oc-bg);
+}
+.loom-window.ocult-ui > .loom-window-header { background: transparent; border-bottom: 1px dashed var(--oc-line); box-shadow: none; }
+.loom-window.ocult-ui .loom-window-title { font-family: var(--oc-type); font-weight: 400; letter-spacing: 0.12em; color: var(--oc-dim); }
+.loom-window.ocult-ui .loom-window-controls button { color: var(--oc-dim); }
+.loom-window.ocult-ui .loom-window-controls button:hover { color: var(--oc-violet); }
+.loom-window.ocult-ui > .loom-window-body { background: transparent; padding: 14px 14px 0; overflow-y: auto; }
+
+.ocult-ui .oc-file {
+  display: grid;
+  grid-template-columns: 210px minmax(0, 1fr);
+  grid-template-areas: "rail main" "legal legal";
+  gap: 14px;
+  align-items: start;
+  font-family: var(--font-body);
+}
+.ocult-ui .oc-rail { grid-area: rail; display: flex; flex-direction: column; gap: 12px; }
+.ocult-ui .oc-main { grid-area: main; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.ocult-ui .oc-file button { font: inherit; color: inherit; background: none; border: none; padding: 0; cursor: pointer; }
+.ocult-ui .oc-file button:focus-visible { outline: 2px solid var(--oc-violet); outline-offset: 1px; }
+
+/* inputs: typed onto the file, dotted rule underneath */
+.ocult-ui .oc-file input.oc-in,
+.ocult-ui .oc-file select.oc-in,
+.ocult-ui .oc-file textarea.oc-in {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: var(--oc-text) !important;
+  border: none !important;
+  border-bottom: 1px dotted var(--oc-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 2px !important;
+  font: inherit;
+  font-size: inherit !important;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+.ocult-ui .oc-file input.oc-in::-webkit-outer-spin-button,
+.ocult-ui .oc-file input.oc-in::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.ocult-ui .oc-file .oc-in:hover { border-bottom-color: var(--oc-dim) !important; }
+.ocult-ui .oc-file .oc-in:focus { border-bottom: 1px solid var(--oc-violet) !important; background-color: var(--oc-violet-dim) !important; outline: none; }
+.ocult-ui .oc-file .oc-in::placeholder { color: var(--oc-dim) !important; opacity: 0.6; }
+.ocult-ui .oc-file select.oc-in { cursor: pointer; }
+.ocult-ui .oc-file select.oc-in option { background: #20242c !important; color: #dcd8cd !important; }
+
+.ocult-ui .oc-label {
+  margin: 0;
+  font-family: var(--oc-type);
+  font-weight: 400;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--oc-dim);
+}
+.ocult-ui .oc-card {
+  background: var(--oc-card);
+  border: 1px solid var(--oc-line);
+  border-radius: 2px;
+  padding: 10px 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+.ocult-ui .oc-card-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  margin: 0 0 8px; padding-bottom: 6px; border-bottom: 1px dashed var(--oc-line);
+}
+.ocult-ui .oc-empty { margin: 4px 0; font-family: var(--oc-type); font-size: 0.8rem; color: var(--oc-dim); }
+
+/* ── taped polaroid ──────────────────────────────────────────────── */
+.ocult-ui .oc-file .oc-photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 9px 9px 30px;
+  background: var(--oc-paper);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
+  transform: rotate(-2deg);
+  transition: transform 160ms;
+}
+.ocult-ui .oc-file .oc-photo:hover { transform: rotate(0deg); }
+.ocult-ui .oc-photo-frame {
+  display: grid; place-items: center;
+  aspect-ratio: 4 / 5;
+  background: #2a2e36; color: #4a505c; font-size: 3rem;
+  overflow: hidden;
+}
+.ocult-ui .oc-photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0.75) contrast(1.05); }
+.ocult-ui .oc-photo-caption {
+  position: absolute; left: 12px; right: 12px; bottom: 7px;
+  font-family: var(--oc-type); font-size: 0.85rem; color: #2b2a27;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left;
+}
+.ocult-ui .oc-tape {
+  position: absolute; top: -9px; left: 50%;
+  width: 78px; height: 20px; translate: -50% 0; rotate: 3deg;
+  background: rgba(214, 206, 176, 0.72);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* ── vitals ──────────────────────────────────────────────────────── */
+.ocult-ui .oc-vitals .oc-label { margin-bottom: 6px; }
+.ocult-ui .oc-meter { padding: 6px 0; border-bottom: 1px dashed rgba(50, 56, 69, 0.8); }
+.ocult-ui .oc-meter:last-child { border-bottom: none; }
+.ocult-ui .oc-meter-head { display: flex; align-items: center; gap: 6px; }
+.ocult-ui .oc-meter-name { font-family: var(--oc-type); font-size: 0.9rem; min-width: 2.6em; }
+.ocult-ui .oc-meter-nums { display: flex; align-items: baseline; gap: 3px; margin-left: auto; font-size: 1.05rem; }
+.ocult-ui .oc-meter-nums i { font-style: normal; color: var(--oc-dim); }
+.ocult-ui .oc-file .oc-meter-nums input.oc-in { width: 2.2em; font-weight: 700; }
+.ocult-ui .oc-step { display: flex; gap: 2px; }
+.ocult-ui .oc-file .oc-step button { width: 18px; height: 18px; border: 1px solid var(--oc-line); border-radius: 2px; color: var(--oc-dim); font-size: 0.8rem; line-height: 1; }
+.ocult-ui .oc-file .oc-step button:hover { color: var(--oc-violet); border-color: var(--oc-violet); }
+.ocult-ui .oc-bar { height: 5px; margin-top: 5px; background: rgba(255, 255, 255, 0.06); }
+.ocult-ui .oc-bar span { display: block; height: 100%; }
+.ocult-ui .oc-meter-pv .oc-bar span { background: var(--oc-rust); }
+.ocult-ui .oc-meter-pe .oc-bar span { background: var(--oc-teal); }
+.ocult-ui .oc-meter-san .oc-bar span { background: var(--oc-violet); }
+.ocult-ui .oc-meter-det .oc-bar span { background: linear-gradient(90deg, var(--oc-teal), var(--oc-violet)); }
+
+.ocult-ui .oc-defense { display: flex; flex-direction: column; gap: 6px; }
+.ocult-ui .oc-def-main { display: flex; align-items: baseline; gap: 8px; }
+.ocult-ui .oc-def-main strong { font-family: var(--oc-type); font-size: 2rem; line-height: 1; color: var(--oc-paper); }
+.ocult-ui .oc-def-fields,
+.ocult-ui .oc-def-pe { display: flex; justify-content: space-between; gap: 8px; font-size: 0.75rem; color: var(--oc-dim); }
+.ocult-ui .oc-def-pe b { color: var(--oc-text); }
+.ocult-ui .oc-file .oc-def-fields input.oc-in,
+.ocult-ui .oc-file .oc-def-pe input.oc-in { width: 2.4em; }
+
+/* ── header ──────────────────────────────────────────────────────── */
+.ocult-ui .oc-head {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start;
+  padding-bottom: 10px; border-bottom: 1px dashed var(--oc-line);
+}
+.ocult-ui .oc-file-tag { display: inline-block; padding: 1px 8px; border: 1px solid var(--oc-line); border-radius: 2px 2px 0 0; background: var(--oc-folder); }
+.ocult-ui .oc-file input.oc-name {
+  display: block; width: 100%; text-align: left; margin-top: 4px;
+  font-family: var(--oc-type); font-size: 1.9rem !important; color: var(--oc-paper) !important;
+  border-bottom-color: transparent !important;
+}
+.ocult-ui .oc-slots { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 6px; }
+.ocult-ui .oc-slot { display: flex; align-items: baseline; gap: 8px; }
+.ocult-ui .oc-file .oc-slot-link { font-size: 0.9rem; color: var(--oc-text); border-bottom: 1px dotted var(--oc-dim); }
+.ocult-ui .oc-file .oc-slot-link:hover { color: var(--oc-violet); }
+.ocult-ui .oc-file .oc-slot-empty { width: 18px; height: 18px; border: 1px dashed var(--oc-dim); border-radius: 2px; color: var(--oc-dim); font-size: 0.8rem; line-height: 1; }
+.ocult-ui .oc-file .oc-slot-empty:hover { color: var(--oc-violet); border-color: var(--oc-violet); }
+
+/* Signature: the NEX stamp */
+.ocult-ui .oc-stamp {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  min-width: 128px; padding: 6px 14px 8px;
+  border: 3px double var(--oc-violet);
+  border-radius: 4px;
+  color: var(--oc-violet);
+  transform: rotate(-4deg);
+  background:
+    radial-gradient(circle at 30% 40%, rgba(164, 138, 222, 0.10), transparent 60%),
+    transparent;
+}
+.ocult-ui .oc-stamp-label { font-family: var(--oc-type); font-size: 0.8rem; letter-spacing: 0.3em; }
+.ocult-ui .oc-stamp-value { display: flex; align-items: baseline; font-family: var(--oc-type); font-size: 2.2rem; line-height: 1; }
+.ocult-ui .oc-stamp-value i { font-style: normal; font-size: 1.1rem; margin-left: 2px; }
+.ocult-ui .oc-file .oc-stamp-value input.oc-in {
+  width: 1.9em; text-align: right; color: var(--oc-violet) !important; border-bottom: none !important;
+  font-family: var(--oc-type);
+}
+.ocult-ui .oc-nex-track { display: block; width: 100%; height: 4px; margin-top: 4px; background: rgba(164, 138, 222, 0.18); }
+.ocult-ui .oc-nex-track span { display: block; height: 100%; background: var(--oc-violet); }
+
+/* ── attributes: index cards in a row ────────────────────────────── */
+.ocult-ui .oc-attrs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.ocult-ui .oc-attr {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 8px 4px 6px;
+  background: var(--oc-card);
+  border: 1px solid var(--oc-line);
+  border-top: 3px solid var(--oc-teal);
+  border-radius: 2px;
+}
+.ocult-ui .oc-file input.oc-attr-num { width: 2em; font-family: var(--oc-type); font-size: 1.9rem !important; color: var(--oc-paper) !important; border-bottom: none !important; }
+.ocult-ui .oc-file .oc-attr-key { font-family: var(--oc-type); font-size: 0.95rem; letter-spacing: 0.2em; color: var(--oc-teal); }
+.ocult-ui .oc-file .oc-attr-key:hover { color: var(--oc-violet); }
+.ocult-ui .oc-attr-name { font-size: 0.66rem; color: var(--oc-dim); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ── tabs: folder dividers ───────────────────────────────────────── */
+.ocult-ui .oc-tabs { display: flex; gap: 4px; border-bottom: 1px solid var(--oc-line); }
+.ocult-ui .oc-file .sdr-ocult-tab-btn {
+  padding: 5px 14px; margin-bottom: -1px;
+  font-family: var(--oc-type); font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--oc-dim);
+  border: 1px solid transparent; border-bottom: none; border-radius: 3px 3px 0 0;
+}
+.ocult-ui .oc-file .sdr-ocult-tab-btn:hover { color: var(--oc-text); }
+.ocult-ui .oc-file .sdr-ocult-tab-btn.active {
+  color: var(--oc-paper); background: var(--oc-card); border-color: var(--oc-line);
+}
+
+.ocult-ui .oc-panel { display: flex; flex-direction: column; gap: 10px; }
+
+/* ── overview: skills centre, stack right ────────────────────────── */
+.ocult-ui .oc-overview { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 10px; align-items: stretch; }
+.ocult-ui .oc-overview[style*="none"] { display: none !important; }
+.ocult-ui .oc-stack { display: flex; flex-direction: column; gap: 10px; min-width: 0; align-self: start; }
+.ocult-ui .oc-skills { display: flex; flex-direction: column; height: 0; min-height: max(100%, 420px); box-sizing: border-box; }
+.ocult-ui .oc-skill-list { flex: 1 1 0; min-height: 0; overflow-y: auto; padding-right: 4px; scrollbar-width: thin; scrollbar-color: var(--oc-line) transparent; }
+.ocult-ui .oc-skill {
+  display: grid; grid-template-columns: minmax(0, 1fr) 4.2em 7.2em 6.4em; align-items: center; gap: 8px;
+  padding: 3px 0; border-bottom: 1px dashed rgba(50, 56, 69, 0.7); font-size: 0.86rem; color: var(--oc-dim);
+}
+.ocult-ui .oc-skill.is-trained { color: var(--oc-text); }
+.ocult-ui .oc-skill-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ocult-ui .oc-file select.oc-skill-attr { font-family: var(--oc-type); font-size: 0.78rem !important; color: var(--oc-teal) !important; }
+.ocult-ui .oc-file select.oc-skill-grade { font-size: 0.78rem !important; text-align: left; }
+.ocult-ui .oc-file .oc-skill-roll { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
+.ocult-ui .oc-dice { font-family: var(--oc-type); font-size: 0.72rem; color: var(--oc-dim); }
+.ocult-ui .oc-skill-roll b { font-family: var(--oc-type); font-weight: 400; font-size: 1rem; color: var(--oc-paper); }
+.ocult-ui .oc-file .oc-skill-roll:hover b,
+.ocult-ui .oc-file .oc-skill-roll:hover .oc-dice { color: var(--oc-violet); }
+.ocult-ui .oc-file .oc-init { font-family: var(--oc-type); font-size: 0.72rem; color: var(--oc-violet); letter-spacing: 0.1em; }
+
+.ocult-ui .oc-weapon { padding: 6px 0; border-bottom: 1px dashed rgba(50, 56, 69, 0.7); }
+.ocult-ui .oc-weapon-top { display: flex; align-items: center; gap: 8px; }
+.ocult-ui .oc-weapon-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-top: 4px; font-size: 0.76rem; color: var(--oc-dim); }
+.ocult-ui .oc-weapon-rolls { display: flex; gap: 4px; margin-left: auto; }
+.ocult-ui .oc-file .oc-chip { padding: 1px 7px; border: 1px solid var(--oc-line); border-radius: 2px; font-size: 0.74rem; color: var(--oc-text); }
+.ocult-ui .oc-file .oc-chip:hover { border-color: var(--oc-violet); color: var(--oc-violet); }
+.ocult-ui .oc-file .oc-chip-crit { color: var(--oc-rust); }
+.ocult-ui .oc-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-bottom: 1px dashed rgba(50, 56, 69, 0.7); font-size: 0.86rem; }
+.ocult-ui .oc-file .oc-link { flex: 1; text-align: left; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ocult-ui .oc-file .oc-link:hover { color: var(--oc-violet); }
+.ocult-ui .oc-meta { font-size: 0.76rem; color: var(--oc-dim); }
+.ocult-ui .oc-req { font-style: italic; }
+.ocult-ui .oc-tag { padding: 0 6px; border: 1px solid var(--oc-teal); border-radius: 2px; font-family: var(--oc-type); font-size: 0.7rem; color: var(--oc-teal); }
+.ocult-ui .oc-group-label { margin: 8px 0 2px; font-family: var(--oc-type); font-size: 0.78rem; color: var(--oc-violet); letter-spacing: 0.1em; }
+.ocult-ui .oc-file .oc-icon { color: var(--oc-dim); font-size: 0.74rem; }
+.ocult-ui .oc-file .oc-icon:hover { color: var(--oc-rust); }
+.ocult-ui .oc-file .oc-add { width: 20px; height: 20px; border: 1px dashed var(--oc-dim); border-radius: 2px; color: var(--oc-dim); font-size: 0.7rem; }
+.ocult-ui .oc-file .oc-add:hover { color: var(--oc-violet); border-color: var(--oc-violet); }
+.ocult-ui .oc-file textarea.oc-notes {
+  min-height: 460px; resize: vertical; text-align: left; line-height: 1.7;
+  font-family: var(--oc-type); padding: 12px !important;
+  background: var(--oc-card) !important; border: 1px solid var(--oc-line) !important;
+}
+
+/* legal notice required by the community license: in flow, never over content */
+.ocult-ui .oc-legal {
+  grid-area: legal;
+  position: static;
+  margin: 4px -14px 0;
+  padding: 8px 14px;
+  border-top: 1px dashed var(--oc-line);
+  background: var(--oc-folder);
+  font-family: var(--oc-type);
+  font-size: 0.72rem;
+  text-align: center;
+  color: var(--oc-dim);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ocult-ui * { transition: none !important; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   NPC + item sheets — same "agent case file" language, single column.
+   Appended, no existing rule touched. Scoped under .ocult-ui.
+   ══════════════════════════════════════════════════════════════════════ */
+/* NPC: one column (override the character two-column grid) */
+.ocult-ui .oc-npc {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "main" "legal";
+}
+.ocult-ui .oc-npc-main { grid-area: main; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.ocult-ui .oc-npc-head { grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; }
+.ocult-ui .oc-file .oc-npc-photo { width: 110px; padding: 6px 6px 24px; }
+.ocult-ui .oc-file .oc-npc-photo .oc-photo-frame { font-size: 2rem; }
+.ocult-ui .oc-file .oc-npc-photo .oc-photo-caption { font-size: 0.72rem; left: 8px; right: 8px; bottom: 5px; }
+.ocult-ui .oc-file input.oc-npc-name { font-size: 1.4rem !important; }
+.ocult-ui .oc-npc-stamp { min-width: 104px; padding: 4px 10px 6px; }
+.ocult-ui .oc-npc-stamp .oc-stamp-value { font-size: 1.6rem; }
+.ocult-ui .oc-skill-grade-name { font-family: var(--oc-type); font-size: 0.72rem; color: var(--oc-dim); }
+.ocult-ui .oc-file textarea.oc-npc-notes { min-height: 120px; }
+
+/* Item: folder-label header, two-column details, description notes */
+.ocult-ui .oc-item {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "main" "legal";
+}
+.ocult-ui .oc-item-main { grid-area: main; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.ocult-ui .oc-item-head { display: flex; gap: 12px; align-items: center; padding-bottom: 10px; border-bottom: 1px dashed var(--oc-line); }
+.ocult-ui .oc-file .oc-item-icon {
+  width: 56px; height: 56px; flex: none;
+  display: grid; place-items: center; overflow: hidden;
+  background: var(--oc-card); border: 1px solid var(--oc-line); border-radius: 2px;
+  font-size: 1.8rem;
+}
+.ocult-ui .oc-file .oc-item-icon:hover { border-color: var(--oc-violet); }
+.ocult-ui .oc-item-icon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ocult-ui .oc-item-id { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.ocult-ui .oc-file input.oc-item-name { font-size: 1.4rem !important; text-align: left; }
+.ocult-ui .oc-item-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.ocult-ui .oc-item-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+.ocult-ui .oc-field { display: flex; flex-direction: column; gap: 2px; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--oc-dim); }
+.ocult-ui .oc-field.oc-span { grid-column: 1 / -1; }
+.ocult-ui .oc-field .oc-in { text-align: left; }
+.ocult-ui .oc-file textarea.oc-item-notes { min-height: 160px; }
+
+/* Case-file desk (user art) behind the sheet, dimmed so the cards stay readable. */
+.loom-window.ocult-ui {
+  background:
+    linear-gradient(180deg, rgba(20, 22, 27, 0.70), rgba(20, 22, 27, 0.84)),
+    url('/marketplace/rulesets/sdr-ocult/assets/images/desk-bg.webp') center / cover no-repeat,
+    var(--oc-bg);
+}

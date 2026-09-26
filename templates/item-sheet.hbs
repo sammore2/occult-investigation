@@ -1,0 +1,91 @@
+{{!-- SDR OCULT — item sheet: folder-label header, Details/Description tabs, same visual language as the character sheet. --}}
+<div class="sdr-ocult-root oc-file oc-item">
+  <div class="oc-item-main">
+    {{!-- Folder-label header: clickable icon, name, type + ritual/power tags --}}
+    <header class="oc-item-head">
+      <button type="button" class="oc-item-icon" data-action="pick-icon" title="{{typeLabel}}">
+        {{#if imgUrl}}<img src="{{imgUrl}}" alt="" />{{else}}<span aria-hidden="true">{{icon}}</span>{{/if}}
+      </button>
+      <div class="oc-item-id">
+        <input class="oc-in oc-name oc-item-name" type="text" name="name" value="{{name}}" placeholder="{{T.namePlaceholder}}" />
+        <span class="oc-label">{{typeLabel}}</span>
+      </div>
+    </header>
+
+    {{#if tags}}
+    <div class="oc-item-tags">
+      {{#each tags}}<span class="oc-tag">{{this}}</span>{{/each}}
+    </div>
+    {{/if}}
+
+    <nav class="oc-tabs">
+      {{#each tabs}}
+      <button type="button" class="sdr-ocult-tab-btn{{#if active}} active{{/if}}" data-action="tab" data-tab="{{id}}">{{label}}</button>
+      {{/each}}
+    </nav>
+
+    {{!-- ═══ Details ═══ --}}
+    <div class="oc-panel" data-tab-content="details">
+      <div class="oc-card oc-item-grid">
+        {{#if isOrigin}}
+        <label class="oc-field oc-span">{{T.trainedSkills}} <input class="oc-in" type="text" name="sd:trainedSkills" value="{{trainedSkills}}" /></label>
+        <label class="oc-field oc-span">{{T.power}} <input class="oc-in" type="text" name="sd:power" value="{{originPower}}" /></label>
+        {{/if}}
+        {{#if isClass}}
+        <label class="oc-field">{{T.pvBase}} <input class="oc-in" type="number" name="sd:pvBase" value="{{pvBase}}" /></label>
+        <label class="oc-field">{{T.pvPerNex}} <input class="oc-in" type="number" name="sd:pvPerNex" value="{{pvPerNex}}" /></label>
+        <label class="oc-field">{{T.peBase}} <input class="oc-in" type="number" name="sd:peBase" value="{{peBase}}" /></label>
+        <label class="oc-field">{{T.pePerNex}} <input class="oc-in" type="number" name="sd:pePerNex" value="{{pePerNex}}" /></label>
+        <label class="oc-field">{{T.sanBase}} <input class="oc-in" type="number" name="sd:sanBase" value="{{sanBase}}" /></label>
+        <label class="oc-field">{{T.sanPerNex}} <input class="oc-in" type="number" name="sd:sanPerNex" value="{{sanPerNex}}" /></label>
+        <label class="oc-field oc-span">{{T.trainedSkillsCount}} <input class="oc-in" type="number" name="sd:trainedSkillsCount" value="{{trainedSkillsCount}}" min="0" /></label>
+        {{/if}}
+        {{#if isTrail}}
+        <label class="oc-field">{{T.class}} <input class="oc-in" type="text" name="sd:class" value="{{trailClass}}" /></label>
+        <label class="oc-field">{{T.nexUnlocks}} <input class="oc-in" type="text" name="sd:nexUnlocks" value="{{nexUnlocks}}" /></label>
+        {{/if}}
+        {{#if isPower}}
+        <label class="oc-field">{{T.requirement}} <input class="oc-in" type="text" name="sd:requirement" value="{{requirement}}" /></label>
+        <label class="oc-field">{{T.element}} <select class="oc-in" name="sd:element">{{#each elementOptions}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}</select></label>
+        <label class="oc-field">{{T.cost}} <input class="oc-in" type="number" name="sd:cost" value="{{cost}}" min="0" /></label>
+        {{/if}}
+        {{#if isRitual}}
+        <label class="oc-field">{{T.element}} <select class="oc-in" name="sd:element">{{#each elementOptions}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}</select></label>
+        <label class="oc-field">{{T.circle}} <select class="oc-in" name="sd:circle">{{#each circleOptions}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}</select></label>
+        <label class="oc-field">{{T.cost}} <input class="oc-in" type="number" name="sd:cost" value="{{cost}}" min="0" /></label>
+        <label class="oc-field">{{T.execution}} <input class="oc-in" type="text" name="sd:execution" value="{{execution}}" /></label>
+        <label class="oc-field">{{T.range}} <input class="oc-in" type="text" name="sd:range" value="{{range}}" /></label>
+        <label class="oc-field">{{T.target}} <input class="oc-in" type="text" name="sd:target" value="{{target}}" /></label>
+        <label class="oc-field">{{T.duration}} <input class="oc-in" type="text" name="sd:duration" value="{{duration}}" /></label>
+        <label class="oc-field">{{T.resistance}} <input class="oc-in" type="text" name="sd:resistance" value="{{resistance}}" /></label>
+        <label class="oc-field oc-span">{{T.damage}} <input class="oc-in" type="text" name="sd:damage" value="{{damage}}" placeholder="2d6" /></label>
+        {{/if}}
+        {{#if isWeapon}}
+        <label class="oc-field">{{T.damage}} <input class="oc-in" type="text" name="sd:damage" value="{{damage}}" placeholder="1d8" /></label>
+        <label class="oc-field">{{T.damageType}} <input class="oc-in" type="text" name="sd:damageType" value="{{damageType}}" /></label>
+        <label class="oc-field">{{T.critThreshold}} <input class="oc-in" type="number" name="sd:critThreshold" value="{{critThreshold}}" min="1" max="20" /></label>
+        <label class="oc-field">{{T.critMultiplier}} <input class="oc-in" type="number" name="sd:critMultiplier" value="{{critMultiplier}}" min="2" /></label>
+        <label class="oc-field">{{T.skill}} <select class="oc-in" name="sd:skill">{{#each skillOptions}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}</select></label>
+        <label class="oc-field">{{T.range}} <input class="oc-in" type="text" name="sd:range" value="{{weaponRange}}" /></label>
+        <label class="oc-field oc-span">{{T.category}} <input class="oc-in" type="text" name="sd:category" value="{{category}}" /></label>
+        {{/if}}
+        {{#if isProtection}}
+        <label class="oc-field">{{T.defenseBonus}} <input class="oc-in" type="number" name="sd:defenseBonus" value="{{defenseBonus}}" /></label>
+        <label class="oc-field">{{T.category}} <input class="oc-in" type="text" name="sd:category" value="{{category}}" /></label>
+        {{/if}}
+        {{#if isGear}}
+        <label class="oc-field">{{T.category}} <input class="oc-in" type="text" name="sd:category" value="{{category}}" /></label>
+        <label class="oc-field">{{T.quantity}} <input class="oc-in" type="number" name="sd:quantity" value="{{quantity}}" min="1" /></label>
+        <label class="oc-field oc-span">{{T.space}} <input class="oc-in" type="number" name="sd:space" value="{{space}}" min="0" /></label>
+        {{/if}}
+      </div>
+    </div>
+
+    {{!-- ═══ Description ═══ --}}
+    <div class="oc-panel" data-tab-content="description" style="display:none">
+      <textarea class="oc-in oc-notes oc-item-notes" name="sd:description" placeholder="{{T.description}}">{{description}}</textarea>
+    </div>
+  </div>
+
+  <footer class="oc-legal sdr-ocult-legal">{{legalNotice}}</footer>
+</div>

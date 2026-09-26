@@ -1,0 +1,255 @@
+{{!-- SDR OCULT — character sheet: agent case file. Typewritten labels, taped photo, stamped NEX. --}}
+<div class="sdr-ocult-root sdr-ocult-character oc-file">
+
+  {{!-- Left rail: taped photo + vitals --}}
+  <aside class="oc-rail">
+    <button type="button" class="oc-photo" data-action="pick-portrait" title="{{T.portrait}}">
+      <span class="oc-tape" aria-hidden="true"></span>
+      <span class="oc-photo-frame">
+        {{#if avatarUrl}}<img src="{{avatarUrl}}" alt="" />{{else}}<i class="fa-solid fa-user-secret"></i>{{/if}}
+      </span>
+      <span class="oc-photo-caption">{{#if name}}{{name}}{{else}}{{T.namePlaceholder}}{{/if}}</span>
+    </button>
+
+    <section class="oc-card oc-vitals">
+      <h3 class="oc-label">{{T.vitals}}</h3>
+      <div class="oc-meter oc-meter-pv">
+        <div class="oc-meter-head">
+          <span class="oc-meter-name">{{T.pv}}</span>
+          <span class="oc-meter-nums"><input class="oc-in" type="number" name="sd:resources.pv.value" value="{{pv.value}}" min="0" /><i>/</i><input class="oc-in" type="number" name="sd:resources.pv.max" value="{{pv.max}}" min="0" /></span>
+          <span class="oc-step"><button type="button" data-action="res-delta" data-res="pv" data-delta="-1">−</button><button type="button" data-action="res-delta" data-res="pv" data-delta="1">+</button></span>
+        </div>
+        <div class="oc-bar"><span style="width:{{pv.pct}}%"></span></div>
+      </div>
+      {{#if useDetermination}}
+      <div class="oc-meter oc-meter-det">
+        <div class="oc-meter-head">
+          <span class="oc-meter-name">{{T.determination}}</span>
+          <span class="oc-meter-nums"><input class="oc-in" type="number" name="sd:determination.value" value="{{det.value}}" min="0" /><i>/</i><input class="oc-in" type="number" name="sd:determination.max" value="{{det.max}}" min="0" /></span>
+          <span class="oc-step"><button type="button" data-action="res-delta" data-res="determination" data-delta="-1">−</button><button type="button" data-action="res-delta" data-res="determination" data-delta="1">+</button></span>
+        </div>
+        <div class="oc-bar"><span style="width:{{det.pct}}%"></span></div>
+      </div>
+      {{else}}
+      <div class="oc-meter oc-meter-pe">
+        <div class="oc-meter-head">
+          <span class="oc-meter-name">{{T.pe}}</span>
+          <span class="oc-meter-nums"><input class="oc-in" type="number" name="sd:resources.pe.value" value="{{pe.value}}" min="0" /><i>/</i><input class="oc-in" type="number" name="sd:resources.pe.max" value="{{pe.max}}" min="0" /></span>
+          <span class="oc-step"><button type="button" data-action="res-delta" data-res="pe" data-delta="-1">−</button><button type="button" data-action="res-delta" data-res="pe" data-delta="1">+</button></span>
+        </div>
+        <div class="oc-bar"><span style="width:{{pe.pct}}%"></span></div>
+      </div>
+      <div class="oc-meter oc-meter-san">
+        <div class="oc-meter-head">
+          <span class="oc-meter-name">{{T.san}}</span>
+          <span class="oc-meter-nums"><input class="oc-in" type="number" name="sd:resources.san.value" value="{{san.value}}" min="0" /><i>/</i><input class="oc-in" type="number" name="sd:resources.san.max" value="{{san.max}}" min="0" /></span>
+          <span class="oc-step"><button type="button" data-action="res-delta" data-res="san" data-delta="-1">−</button><button type="button" data-action="res-delta" data-res="san" data-delta="1">+</button></span>
+        </div>
+        <div class="oc-bar"><span style="width:{{san.pct}}%"></span></div>
+      </div>
+      {{/if}}
+    </section>
+
+    <section class="oc-card oc-defense">
+      <div class="oc-def-main">
+        <strong>{{defense.value}}</strong>
+        <span class="oc-label">{{T.defense}}</span>
+      </div>
+      <div class="oc-def-fields">
+        <label>{{T.protection}} <input class="oc-in" type="number" name="sd:defense.protection" value="{{defense.protection}}" /></label>
+        <label>{{T.bonus}} <input class="oc-in" type="number" name="sd:defense.bonus" value="{{defense.bonus}}" /></label>
+      </div>
+      <div class="oc-def-pe">
+        <span>{{T.peLimit}} <b>{{peLimit.value}}</b></span>
+        <label>{{T.override}} <input class="oc-in" type="number" name="sd:peLimit.override" value="{{peLimit.override}}" min="0" /></label>
+      </div>
+    </section>
+  </aside>
+
+  <div class="oc-main">
+    {{!-- Case file header --}}
+    <header class="oc-head">
+      <div class="oc-head-id">
+        <span class="oc-label oc-file-tag">{{T.fileTag}}</span>
+        <input class="oc-in oc-name" type="text" name="name" value="{{name}}" placeholder="{{T.namePlaceholder}}" />
+        <div class="oc-slots">
+          <span class="oc-slot"><span class="oc-label">{{T.origin}}</span>{{#if origin.id}}<button type="button" class="oc-slot-link" data-action="open-item" data-id="{{origin.id}}">{{origin.name}}</button>{{else}}<button type="button" class="oc-slot-empty" data-action="create-item" data-item-type="origin">+</button>{{/if}}</span>
+          <span class="oc-slot"><span class="oc-label">{{T.class}}</span>{{#if class.id}}<button type="button" class="oc-slot-link" data-action="open-item" data-id="{{class.id}}">{{class.name}}</button>{{else}}<button type="button" class="oc-slot-empty" data-action="create-item" data-item-type="class">+</button>{{/if}}</span>
+          <span class="oc-slot"><span class="oc-label">{{T.trail}}</span>{{#if trail.id}}<button type="button" class="oc-slot-link" data-action="open-item" data-id="{{trail.id}}">{{trail.name}}</button>{{else}}<button type="button" class="oc-slot-empty" data-action="create-item" data-item-type="trail">+</button>{{/if}}</span>
+        </div>
+      </div>
+      {{!-- Signature: NEX as an ink stamp, with the exposure track under it --}}
+      <div class="oc-stamp" title="{{T.nexHint}}">
+        <span class="oc-stamp-label">{{T.nex}}</span>
+        <span class="oc-stamp-value"><input class="oc-in" type="number" name="sd:nex.value" value="{{nex}}" min="5" max="99" step="5" /><i>%</i></span>
+        <span class="oc-nex-track"><span style="width: {{nexPct}}%"></span></span>
+      </div>
+    </header>
+
+    {{!-- Attributes as a row of index cards --}}
+    <section class="oc-attrs">
+      {{#each attributes}}
+      <div class="oc-attr">
+        <input class="oc-in oc-attr-num" type="number" name="sd:attributes.{{key}}.value" value="{{value}}" min="0" max="5" />
+        <button type="button" class="oc-attr-key" data-action="roll-attribute" data-key="{{key}}" title="{{label}}">{{abbr}}</button>
+        <span class="oc-attr-name">{{label}}</span>
+      </div>
+      {{/each}}
+    </section>
+
+    <nav class="oc-tabs">
+      {{#each tabs}}
+      <button type="button" class="sdr-ocult-tab-btn{{#if active}} active{{/if}}" data-action="tab" data-tab="{{id}}">{{label}}</button>
+      {{/each}}
+    </nav>
+
+    {{!-- ═══ Overview ═══ --}}
+    <div class="oc-panel oc-overview" data-tab-content="overview">
+      <section class="oc-card oc-skills">
+        <h3 class="oc-label oc-card-head">{{T.skills}}
+          <button type="button" class="oc-init" data-action="roll-initiative"><i class="fa-solid fa-bolt"></i> {{T.initiative}}</button>
+        </h3>
+        <div class="oc-skill-list">
+          {{#each skills}}
+          <div class="oc-skill{{#if trained}} is-trained{{/if}}">
+            <span class="oc-skill-name">{{label}}</span>
+            <select class="oc-in oc-skill-attr" name="sd:skills.{{key}}.attribute" title="{{../T.skillAttr}}">
+              {{#each attrOptions}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+            </select>
+            <select class="oc-in oc-skill-grade" name="sd:skills.{{key}}.grade">
+              {{#each gradeOptions}}<option value="{{value}}"{{#if selected}} selected{{/if}}>{{label}}</option>{{/each}}
+            </select>
+            <button type="button" class="oc-skill-roll" data-action="roll-skill" data-key="{{key}}" title="{{../T.dicePool}}">
+              <span class="oc-dice">{{dice}}</span><b>{{total}}</b>
+            </button>
+          </div>
+          {{/each}}
+        </div>
+      </section>
+
+      <div class="oc-stack">
+        <section class="oc-card">
+          <h3 class="oc-label oc-card-head">{{T.attacks}} <button type="button" class="oc-add" data-action="create-item" data-item-type="weapon" title="{{T.add}}"><i class="fa-solid fa-plus"></i></button></h3>
+          {{#each weapons}}
+          <div class="oc-weapon">
+            <div class="oc-weapon-top">
+              <button type="button" class="oc-link" data-action="open-item" data-id="{{id}}">{{name}}</button>
+              <button type="button" class="oc-icon" data-action="delete-item" data-id="{{id}}" title="{{../T.remove}}"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            <div class="oc-weapon-meta">
+              <span>{{skillLabel}}</span><span>{{crit}}</span>
+              <span class="oc-weapon-rolls">
+                <button type="button" class="oc-chip" data-action="roll-attack" data-id="{{id}}"><i class="fa-solid fa-dice-d20"></i> {{../T.attack}}</button>
+                {{#if hasDamage}}
+                <button type="button" class="oc-chip" data-action="roll-damage" data-id="{{id}}">{{../T.damage}}</button>
+                <button type="button" class="oc-chip oc-chip-crit" data-action="roll-crit" data-id="{{id}}" title="{{../T.critDamage}}"><i class="fa-solid fa-burst"></i></button>
+                {{/if}}
+              </span>
+            </div>
+          </div>
+          {{else}}
+          <p class="oc-empty">{{T.noWeapons}}</p>
+          {{/each}}
+        </section>
+
+        <section class="oc-card">
+          <h3 class="oc-label oc-card-head">{{T.protections}} <button type="button" class="oc-add" data-action="create-item" data-item-type="protection" title="{{T.add}}"><i class="fa-solid fa-plus"></i></button></h3>
+          {{#each protections}}
+          <div class="oc-row">
+            <button type="button" class="oc-link" data-action="open-item" data-id="{{id}}">{{name}}</button>
+            <span class="oc-meta">{{bonus}}</span>
+            <button type="button" class="oc-icon" data-action="delete-item" data-id="{{id}}" title="{{../T.remove}}"><i class="fa-solid fa-trash"></i></button>
+          </div>
+          {{else}}
+          <p class="oc-empty">—</p>
+          {{/each}}
+        </section>
+      </div>
+    </div>
+
+    {{!-- ═══ Combat ═══ --}}
+    <div class="oc-panel" data-tab-content="combat" style="display:none">
+      <section class="oc-card">
+        <h3 class="oc-label oc-card-head">{{T.weapons}} <button type="button" class="oc-add" data-action="create-item" data-item-type="weapon" title="{{T.add}}"><i class="fa-solid fa-plus"></i></button></h3>
+        {{#each weapons}}
+        <div class="oc-row">
+          <button type="button" class="oc-link" data-action="open-item" data-id="{{id}}">{{name}}</button>
+          <span class="oc-meta">{{skillLabel}} · {{crit}}</span>
+          <button type="button" class="oc-chip" data-action="roll-attack" data-id="{{id}}" title="{{../T.attack}}"><i class="fa-solid fa-dice-d20"></i></button>
+          {{#if hasDamage}}
+          <button type="button" class="oc-chip" data-action="roll-damage" data-id="{{id}}" title="{{../T.damage}}"><i class="fa-solid fa-heart-crack"></i></button>
+          <button type="button" class="oc-chip oc-chip-crit" data-action="roll-crit" data-id="{{id}}" title="{{../T.critDamage}}"><i class="fa-solid fa-burst"></i></button>
+          {{/if}}
+          <button type="button" class="oc-icon" data-action="delete-item" data-id="{{id}}" title="{{../T.remove}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        {{else}}
+        <p class="oc-empty">{{T.noWeapons}}</p>
+        {{/each}}
+      </section>
+    </div>
+
+    {{!-- ═══ Rituals ═══ --}}
+    <div class="oc-panel" data-tab-content="rituals" style="display:none">
+      <section class="oc-card">
+        <h3 class="oc-label oc-card-head">{{T.rituals}} <button type="button" class="oc-add" data-action="create-item" data-item-type="ritual" title="{{T.add}}"><i class="fa-solid fa-plus"></i></button></h3>
+        {{#each ritualsByCircle}}
+        <div class="oc-group-label">{{../T.circle}} {{circle}}</div>
+        {{#each items}}
+        <div class="oc-row">
+          <button type="button" class="oc-link" data-action="open-item" data-id="{{id}}">{{name}}</button>
+          <span class="oc-tag">{{element}}</span>
+          <span class="oc-meta">{{../../T.cost}} {{cost}}</span>
+          {{#if hasDamage}}<button type="button" class="oc-chip" data-action="roll-ritual-damage" data-id="{{id}}" title="{{../../T.damage}}"><i class="fa-solid fa-heart-crack"></i></button>{{/if}}
+          <button type="button" class="oc-icon" data-action="delete-item" data-id="{{id}}" title="{{../../T.remove}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        {{/each}}
+        {{else}}
+        <p class="oc-empty">—</p>
+        {{/each}}
+      </section>
+    </div>
+
+    {{!-- ═══ Powers ═══ --}}
+    <div class="oc-panel" data-tab-content="powers" style="display:none">
+      <section class="oc-card">
+        <h3 class="oc-label oc-card-head">{{T.powers}} <button type="button" class="oc-add" data-action="create-item" data-item-type="power" title="{{T.add}}"><i class="fa-solid fa-plus"></i></button></h3>
+        {{#each powers}}
+        <div class="oc-row">
+          <button type="button" class="oc-link" data-action="open-item" data-id="{{id}}">{{name}}</button>
+          <span class="oc-meta">{{../T.cost}} {{cost}}</span>
+          <span class="oc-meta oc-req">{{requirement}}</span>
+          <button type="button" class="oc-icon" data-action="delete-item" data-id="{{id}}" title="{{../T.remove}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        {{else}}
+        <p class="oc-empty">—</p>
+        {{/each}}
+      </section>
+    </div>
+
+    {{!-- ═══ Inventory ═══ --}}
+    <div class="oc-panel" data-tab-content="inventory" style="display:none">
+      <section class="oc-card">
+        <h3 class="oc-label oc-card-head">{{T.inventory}} <button type="button" class="oc-add" data-action="create-item" data-item-type="gear" title="{{T.add}}"><i class="fa-solid fa-plus"></i></button></h3>
+        {{#each gearCats}}
+        <div class="oc-group-label">{{category}}</div>
+        {{#each items}}
+        <div class="oc-row">
+          <button type="button" class="oc-link" data-action="open-item" data-id="{{id}}">{{name}}</button>
+          <span class="oc-meta">×{{quantity}}</span>
+          <button type="button" class="oc-icon" data-action="delete-item" data-id="{{id}}" title="{{../../T.remove}}"><i class="fa-solid fa-trash"></i></button>
+        </div>
+        {{/each}}
+        {{else}}
+        <p class="oc-empty">—</p>
+        {{/each}}
+      </section>
+    </div>
+
+    {{!-- ═══ Notes ═══ --}}
+    <div class="oc-panel" data-tab-content="notes" style="display:none">
+      <textarea class="oc-in oc-notes" name="sd:notes" placeholder="{{T.notes}}">{{notes}}</textarea>
+    </div>
+  </div>
+
+  <footer class="oc-legal sdr-ocult-legal">{{legalNotice}}</footer>
+</div>

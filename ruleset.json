@@ -1,0 +1,43 @@
+{
+  "engine": "loom",
+  "engineVersion": ">=0.1.0",
+  "type": "ruleset",
+  "name": "sdr-ocult",
+  "title": "SDR OCULT",
+  "version": "0.1.0",
+  "author": "Rob Sammore",
+  "license": "MIT",
+  "description": "SDR OCULT — Este é um conteúdo não oficial, publicado sob a Licença da Comunidade de Ordem Paranormal. Horror investigation ruleset for LoomVTT. Code under MIT.",
+  "active": true,
+  "backgroundUrl": "/marketplace/rulesets/sdr-ocult/assets/images/cover.webp",
+  "client": "sdr-ocult.mjs",
+  "styles": [
+    "styles/sdr-ocult.css"
+  ],
+  "actorTypes": [
+    "character",
+    "npc"
+  ],
+  "itemTypes": [
+    "origin",
+    "class",
+    "trail",
+    "power",
+    "ritual",
+    "weapon",
+    "protection",
+    "gear"
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    },
+    {
+      "lang": "pt-BR",
+      "name": "Português (Brasil)",
+      "path": "lang/pt-BR.json"
+    }
+  ]
+}
