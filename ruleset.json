@@ -7,6 +7,8 @@
   "version": "0.1.0",
   "author": "Rob Sammore",
   "license": "MIT",
+  "manifest": "https://raw.githubusercontent.com/sammore2/occult-investigation/main/ruleset.json",
+  "download": "https://github.com/sammore2/occult-investigation/releases/latest/download/sdr-ocult.zip",
   "description": "OCULT INVESTIGATION — Este é um conteúdo não oficial, publicado sob a Licença da Comunidade de Ordem Paranormal. Horror investigation ruleset for LoomVTT. Code under MIT.",
   "active": true,
   "backgroundUrl": "/marketplace/rulesets/sdr-ocult/assets/images/cover.webp",
