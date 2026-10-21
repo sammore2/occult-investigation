@@ -2,7 +2,7 @@
 
 [![Loom VTT](https://img.shields.io/badge/Loom%20VTT-2.0.5--alpha-blueviolet)](https://loomvtt.com)
 [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/sammore2/occult-investigation/latest/sdr-ocult.zip?label=downloads)](https://github.com/sammore2/occult-investigation/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/sammore2/occult-investigation/latest/sdr-ocult.zip?label=downloads)](https://github.com/sammore2/occult-investigation/releases/latest)
 
 A community investigation-and-horror ruleset for LoomVTT, inspired by the Ordem Paranormal RPG rules. It is an unofficial project with no affiliation with, or endorsement from, the rights holders of the original work.
 
@@ -60,7 +60,7 @@ The ruleset is free and available on GitHub and in the free systems area of Loom
 This content is unofficial. It does not reproduce text or images from the books; each table must enter or create its own content while respecting its authors' rights.
 
 <details>
-<summary>PortuguÃªs (pt-BR)</summary>
+<summary>Português (pt-BR)</summary>
 
 Ruleset comunitário de investigação e horror para o LoomVTT, inspirado nas regras de Ordem Paranormal RPG. É um projeto não oficial e não possui vínculo ou endosso dos titulares da obra.
 
